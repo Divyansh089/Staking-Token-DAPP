@@ -43,7 +43,30 @@ const Partners = () => {
       url: "https://www.theblockchaincoders.com/pro-nft-marketplace",
     },
   ];
-  return <div></div>;
+
+  return (
+    <section className="section" id="partners">
+      <div className="container">
+        <div className="section__title">
+          <h2>Our Partners</h2>
+          <p>Trusted by leading blockchain companies</p>
+        </div>
+
+        <div className="row">
+          {partners.map((partner, index) => (
+            <div className="col-6 col-md-4 col-lg-3" key={index}>
+              <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                <div className="partner">
+                  <img src={partner.image} alt={partner.name} />
+                  <p>{partner.name}</p>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Partners;
