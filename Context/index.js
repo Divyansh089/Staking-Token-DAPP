@@ -38,7 +38,7 @@ function parseErrorMsg(e){
 }
 
 export const SHORTEN_ADDRESS = (address) =>{
-    `${address?.slice(0,8)} ... ${address?.slice(address.length -4 )}`;
+    return `${address?.slice(0,8)}...${address?.slice(address.length -4 )}`;
 }
 
 export const copyAddress = (text) => {
@@ -244,8 +244,7 @@ export async function createPool(pool){
 
 export async function modifyPool(poolId , amount){
     try {
-        const {_depositToken , _rewardToken , _apy , _lockDays} = pool;
-        if(!_depositToken || !_rewardToken || !_apy || !_lockDays){
+        if(!poolId && poolId !== 0 || !amount){
             return notifyError("Please provide all the details.");
         }
         notifySuccess("Calling contract ...");
@@ -393,7 +392,7 @@ export const  UPDATE_TOKEN = async(_address) =>{
     try {
         if(!_address) return notifyError("Address is missing");
         const contract = await TOKEN_ICO_CONTRACT();
-        const gasEstimation = await contractObj.estimateGas.updateToken(_address);
+        const gasEstimation = await contract.estimateGas.updateToken(_address);
         const transaction = await contract.updateToken(_address , {gasLimit: gasEstimation});
         const receipt = await transaction.wait();
         notifySuccess("Transaction  completed successfully");
@@ -411,8 +410,8 @@ export const  UPDATE_TOKEN_PRICE = async(price) =>{
         const contract = await TOKEN_ICO_CONTRACT();
 
         const payAmount = ethers.utils.parseUnits(price.toString(), "ether");
-        const gasEstimation = await contractObj.estimateGas.updateTokenSalePrice(payAmount);
-        const transaction = await contract.updateTokenPrice(payAmount , {gasLimit: gasEstimation});
+        const gasEstimation = await contract.estimateGas.updateTokenSalePrice(payAmount);
+        const transaction = await contract.updateTokenSalePrice(payAmount , {gasLimit: gasEstimation});
         const receipt = await transaction.wait();
 
         notifySuccess("Transaction  completed successfully");
