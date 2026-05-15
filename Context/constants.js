@@ -1,4 +1,4 @@
-import {ether, ethers} from 'ethers';
+import { ethers } from 'ethers';
 import StakingDappABI from './StakingDapp.json';
 import TokenICO from './TokenICO.json';
 import CustomTokenABI from './ERC20.json';
@@ -19,7 +19,7 @@ export function toEth(amount , decimals = 18) {
 }
 
 export const tokenContract = async() => {
-    const provider =  new ethers.providers.Web3Provider(Window.ethereum);
+    const provider =  new ethers.providers.Web3Provider(window.ethereum);
     const {ethereum} = window;
 
     if(ethereum){
@@ -35,7 +35,7 @@ export const tokenContract = async() => {
 }
 
 export const contract = async() => {
-    const provider =  new ethers.providers.Web3Provider(Window.ethereum);
+    const provider =  new ethers.providers.Web3Provider(window.ethereum);
     const {ethereum} = window;
 
     if(ethereum){
@@ -51,7 +51,7 @@ export const contract = async() => {
 }
 
 export const ERC20 = async (address , userAddress) => {
-    const provider =  new ethers.providers.Web3Provider(Window.ethereum);
+    const provider =  new ethers.providers.Web3Provider(window.ethereum);
     const {ethereum} = window;
 
     if(ethereum){
@@ -105,7 +105,7 @@ export const LOAD_TOKEN_TCO = async() => {
 }
 
 export const TOKEN_ICO_CONTRACT = async () => {
-    const provider =  new ethers.providers.Web3Provider(Window.ethereum);
+    const provider =  new ethers.providers.Web3Provider(window.ethereum);
     const {ethereum} = window;
 
     if(ethereum){
@@ -121,7 +121,7 @@ export const TOKEN_ICO_CONTRACT = async () => {
 }
 
 export const TOKEN_ICO_ERC20 = async () => {
-    const provider =  new ethers.providers.Web3Provider(Window.ethereum);
+    const provider =  new ethers.providers.Web3Provider(window.ethereum);
     const {ethereum} = window;
     try {
         if(ethereum){
